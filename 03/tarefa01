@@ -1,0 +1,21 @@
+TAREFA 01
+a) A CPU separa uma fatia de tempo para execução de processos. Caso o processo necessite de um
+tempo maior que essa fatia de tempo, o processo é retirado da CPU e colocado em que estado?
+
+Fica no estado chamado "Pronto", no qual fica aguardando o escalonador liberar recursos de processamento novamente.
+
+b) Em relação a fatia de tempo, qual o comportamento do programa anterior?
+
+Como a instrução Fork é uma duplicação do processo atual ele trás consigo as informações do processo pai, contudo ele não consegue modificar os dados pais.
+Sobre a fatia do tempo, como um processo qualquer, ele entrara na lista de processos do escalonador a ser chamado, se ele vai ter 
+prioridade ou não depende do escalonador empregrado.
+
+c) Como fazer para que o programa anterior tenha um comportamento diferente do citado acima?
+
+Se entendi bem, para haver uma mudança é possivel para alguns tipos de escalonador indicar a prioridade do processo de modo que o mesmo
+seja priorizado
+
+d) Verifique o aumento de iterações que o programa deve fazer para que ele ocupe mais de uma vez a
+CPU.
+
+Pelo menos no meu computador houve uma mudança de estado por volta de 2.500.000
