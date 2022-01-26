@@ -1,57 +1,68 @@
 #include<stdio.h>
 #include<math.h>
 
-float determinant(float [][25], int);
-float** cofactor(float [][25], int);
-float** transpose(float [][25], float [][25], int);
+float determinant(float **, int);
+float** cofactor(float **, int);
+float** transpose(float **, float [][25], int);
 
+float** cria_matriz(int x, int y){
+  float** matriz = (float **)malloc(sizeof(float*) * x);
+  for (int i = 0; i < y; i++) {
+    matriz[i] = (float *)malloc(sizeof(float) * y);
+  }
+  return matriz;
+}
+
+/*
 int main()
 {
-  float a[25][25], d;
-  int i, j, k;
+  float  d;
+  int i, j, tamanho;
   printf("Enter the order of the Matrix '': ");
-  scanf("%d", &k);
-  printf("Enter the elements of %dX%d Matrix : \n", k, k);
-  for (i = 0;i < k; i++)
+  scanf("%d", &tamanho);
+  float **matriz = cria_matriz(tamanho, tamanho);
+  printf("Enter the elements of %dX%d Matrix : \n", tamanho, tamanho);
+  for (i = 0;i < tamanho; i++)
     {
-     for (j = 0;j < k; j++)
+     for (j = 0;j < tamanho; j++)
        {
-        scanf("%f", &a[i][j]);
+        scanf("%f", &matriz[i][j]);
         }
     }
-  d = determinant(a, k);
+  d = determinant(matriz, tamanho);
   if (d == 0){
     printf("\nInverse of Entered Matrix is not possible\n");
   } else {
-   float **outra_coisa = cofactor(a, k);
+   float **outra_coisa = cofactor(matriz, tamanho);
   }
 }
- 
+*/
+
 /*For calculating Determinant of the Matrix */
-float determinant(float a[25][25], int k)
-{
-  float s = 1, det = 0, b[25][25];
+float determinant(float **matriz, int tamanho) {
+  float **b = cria_matriz(25, 25);
+  float s = 1, det = 0;
   int i, j, m, n, c;
-  if (k == 1)
+  if (tamanho == 1)
     {
-     return (a[0][0]);
+     return (matriz[0][0]);
     }
   else
     {
      det = 0;
-     for (c = 0; c < k; c++)
+     for (c = 0; c < tamanho; c++)
        {
         m = 0;
         n = 0;
-        for (i = 0;i < k; i++)
+        for (i = 0;i < tamanho; i++)
           {
-            for (j = 0 ;j < k; j++)
+            for (j = 0 ;j < tamanho; j++)
               {
                 b[i][j] = 0;
                 if (i != 0 && j != c)
                  {
-                   b[m][n] = a[i][j];
-                   if (n < (k - 2))
+                   b[m][n] = matriz[i][j];
+                   if (n < (tamanho - 2))
                     n++;
                    else
                     {
@@ -61,17 +72,17 @@ float determinant(float a[25][25], int k)
                    }
                }
              }
-          det = det + s * (a[0][c] * determinant(b, k - 1));
+          det = det + s * (matriz[0][c] * determinant(b, tamanho - 1));
           s = -1 * s;
           }
     }
- 
     return (det);
 }
  
-float** cofactor(float num[25][25], int f)
+float** cofactor(float **num, int f)
 {
- float b[25][25], fac[25][25];
+ float fac[25][25];
+ float **b = cria_matriz(25,25);
  int p, q, m, n, i, j;
  for (q = 0;q < f; q++)
  {
@@ -102,16 +113,8 @@ float** cofactor(float num[25][25], int f)
   return transpose(num, fac, f);
 }
 
-float** cria_matriz(int x, int y){
-  float** matriz = (float **)malloc(sizeof(float*) * x);
-  for (int i = 0; i < y; i++) {
-    matriz[i] = (float *)malloc(sizeof(float) * y);
-  }
-  return matriz;
-}
-
 /*Finding transpose of matrix*/ 
-float** transpose(float num[25][25], float fac[25][25], int r)
+float** transpose(float **num, float fac[25][25], int r)
 {
   int i, j;
   float d;
@@ -129,7 +132,8 @@ float** transpose(float num[25][25], float fac[25][25], int r)
       inverse[i][j] = b[i][j] / d;
     }
   }
-  printf("\n\n\nThe inverse of matrix is : \n");
+  /*
+  printf("The inverse of matrix is : \n");
  
   for (i = 0;i < r; i++) {
     for (j = 0;j < r; j++) {
@@ -137,6 +141,7 @@ float** transpose(float num[25][25], float fac[25][25], int r)
     }
     printf("\n");
   }
+  */
   return inverse;
 }
 
