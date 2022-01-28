@@ -19,7 +19,7 @@
  /* Define globally accessible variables and a mutex */
 
  #define NUMTHRDS 4
- #define VECLEN 100
+ #define VECLEN 100000
     DOTDATA dotstr; 
     pthread_t callThd[NUMTHRDS];
     pthread_mutex_t mutexsum;

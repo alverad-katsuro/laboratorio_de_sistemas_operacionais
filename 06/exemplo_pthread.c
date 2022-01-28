@@ -11,8 +11,8 @@ pthread_t prod[NUMPROD];
 pthread_mutex_t buffer_mutex;
  int currentidx;
 sem_t buffer_full, buffer_empty;
-void *consumidor(void *arg);
-void *produtor(void *arg);
+void *consumidor(void *);
+void *produtor(void *);
 int buffer[BUFFERSIZE];
 
 int main(int argc, char **argv) {
@@ -34,7 +34,7 @@ int main(int argc, char **argv) {
 void *produtor(void *arg) {
   int n;
   while(1) {
-    n = (int)(drand48() * 1000.0);
+    n = (int)(drand() * 1000.0);
     sem_wait(&buffer_full);
     pthread_mutex_lock(&buffer_mutex);
     buffer[currentidx++] = n;

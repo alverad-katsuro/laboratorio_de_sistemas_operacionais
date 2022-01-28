@@ -1,37 +1,21 @@
-#include<stdio.h>
-#include<stdlib.h>
-
-typedef struct aa {
-  int valor;
-  int valor2;
-} Aa;
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 
 
-void *teste_dv(void *varg) {
-
+void teste(){
+  printf("Numero: %.2f\n", rand() % 1001 + ((rand() % 10) / 11.0));
 }
 
 int main()
 {
-    // Declaring a pointer to store address
-    // pointing to an array of size 3
-    int(*p)[3];
-  
-    // Define an array of size 3
-    int a[3] = { 1, 2, 3 };
-  
-    // Store the base address of the
-    // array in the pointer variable
-    p = &a;
-  
-    // Print the results
-    for (int i = 0; i < 3; i++)
+    int i;
+    printf("intervalo da rand: [0,%d]\n", RAND_MAX);
+    srand((unsigned)(time(NULL)));
+    while (1)
     {
-      printf("%d\n", *((*p) + i));
+      teste();
     }
     
-    return 0;
 }
-
-
 
