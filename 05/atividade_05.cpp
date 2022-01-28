@@ -16,7 +16,7 @@ Matriz* cria_matriz_ponteiro(int linhas, int colunas){
 }
 
 int main(int argc, char const *argv[]) {
-  const int dimensao = 10;
+  const int dimensao = 7;
   Matriz *a = cria_matriz_ponteiro(dimensao, dimensao);
   Matriz *b = cria_matriz_ponteiro(dimensao, dimensao);
   int pipe_comumnication[2];
@@ -25,16 +25,13 @@ int main(int argc, char const *argv[]) {
     if (fork()) {
       close(pipe_comumnication[0]);
       int add_matriz_b[dimensao][dimensao] = {
-        {2,6,3,4,3,1,7,9,5,9},
-        {2,7,5,6,6,5,3,1,1,8},
-        {7,2,5,2,1,6,7,5,7,6},
-        {2,1,1,3,4,6,9,3,8,7},
-        {4,6,3,7,3,2,7,8,6,4},
-        {2,3,4,3,6,5,5,1,3,1},
-        {5,3,3,2,1,3,2,9,7,2},
-        {2,1,5,6,2,9,7,5,5,8},
-        {7,8,4,4,1,5,6,1,2,6},
-        {5,7,3,5,4,3,8,4,8,3}
+        {2,3,5,1,5,5,5},
+        {6,9,5,2,2,6,5},
+        {6,4,9,8,9,2,6},
+        {8,8,9,3,4,6,2},
+        {8,5,2,1,7,7,7},
+        {1,4,6,4,8,8,7},
+        {9,2,2,6,1,9,1}
       };
       for (int i = 0; i < dimensao; i++) {
         for (int k = 0; k < dimensao; k++) {
@@ -51,16 +48,13 @@ int main(int argc, char const *argv[]) {
     } else{
         close(pipe_comumnication[1]);
         int add_matriz_a[dimensao][dimensao] = {
-          {2,6,3,4,3,1,7,9,5,9},
-          {2,7,5,6,6,5,3,1,1,8},
-          {7,2,5,2,1,6,7,5,7,6},
-          {2,1,1,3,4,6,9,3,8,7},
-          {4,6,3,7,3,2,7,8,6,4},
-          {2,3,4,3,6,5,5,1,3,1},
-          {5,3,3,2,1,3,2,9,7,2},
-          {2,1,5,6,2,9,7,5,5,8},
-          {7,8,4,4,1,5,6,1,2,6},
-          {5,7,3,5,4,3,8,4,8,3}
+        {2,3,5,1,5,5,5},
+        {6,9,5,2,2,6,5},
+        {6,4,9,8,9,2,6},
+        {8,8,9,3,4,6,2},
+        {8,5,2,1,7,7,7},
+        {1,4,6,4,8,8,7},
+        {9,2,2,6,1,9,1}
         };
         for (int i = 0; i < dimensao; i++) {
           for (int k = 0; k < dimensao; k++) {
